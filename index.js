@@ -34,7 +34,7 @@ function update(){
   if(diff<=0){
     sub.textContent="🚀 We're Live! Redirecting...";
     dEl.textContent=hEl.textContent=mEl.textContent=sEl.textContent='00';
-    setTimeout(()=>window.location.href='landingpage.html',4000);
+    setTimeout(()=>window.location.href='community.html',4000);
     return;
   }
   const d=Math.floor(diff/(1000*60*60*24));
@@ -62,3 +62,4 @@ document.getElementById('googleRemind').addEventListener('click',()=>{
   const url='https://www.google.com/calendar/render?action=TEMPLATE&text=Hacktivist%20Haven%20Launch&dates=20251231T000000Z/20251231T010000Z&details=Hacktivist%20Haven%20is%20live!&location=https://hactivisthaven.com';
   window.open(url,'_blank');
 });
+
