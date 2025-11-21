@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Unit17 — Cybersecurity Quiz</title>
+    <link rel="stylesheet" href="index.css">
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="card" role="application" aria-label="Unit17 Cybersecurity Quiz">
+        <header>
+          <div class="logo">U17</div>
+          <div>
+            <h1>Unit17 — Cybersecurity Quiz</h1>
+            <p class="lead">Choose a level, answer 20 questions, and test your cybersecurity skills. All English. Neon UI.</p>
+          </div>
+        </header>
+
+        <div class="grid">
+          <main class="panel">
+            <!-- Setup -->
+            <section id="setupPanel">
+              <div class="setup-row">
+                <div class="setup-left">
+                  <label class="small">Enter your name</label>
+                  <input id="username" type="text" placeholder="e.g. Alice" maxlength="32" />
+                  <div class="hint">Name appears on the leaderboard. Leave blank to use 'Guest'. Keyboard: 1–4 to answer.</div>
+                </div>
+                <div class="setup-right">
+                  <label class="small">Choose a level</label>
+                  <div class="levels">
+                    <button class="level-btn" data-level="beginner">Beginner</button>
+                    <button class="level-btn" data-level="hard">Hard</button>
+                    <button class="level-btn" data-level="advanced">Advanced</button>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- Quiz -->
+            <section id="quizPanel" class="hidden">
+              <div class="meta-top">
+                <div id="qIndex"><strong>1</strong> / <span id="qTotal">20</span></div>
+                <div class="progress" aria-hidden="true"><i id="prog"></i></div>
+              </div>
+
+              <div class="question" id="question">Question text</div>
+              <div class="answers" id="answers" role="list"></div>
+
+              <div class="controls">
+                <button class="btn" id="prevBtn">← Previous</button>
+                <div class="right-controls">
+                  <button class="btn" id="skipBtn">Skip</button>
+                  <button class="btn primary" id="nextBtn">Next →</button>
+                </div>
+              </div>
+
+              <div id="explainBox" class="small muted" style="margin-top:10px"></div>
+            </section>
+
+            <!-- Result -->
+            <section id="resultPanel" class="hidden">
+              <div class="result-head">
+                <div>
+                  <h2 id="resultTitle"></h2>
+                  <div class="small muted" id="resultSub"></div>
+                </div>
+                <div class="result-right">
+                  <div id="resultBadge" class="result-badge">Badge</div>
+                </div>
+              </div>
+
+              <div class="save-row">
+                <label class="small" style="min-width:70px">Save score</label>
+                <input id="saveName" type="text" placeholder="Name for leaderboard (optional)" />
+                <button class="btn primary" id="saveScoreBtn">Save</button>
+              </div>
+
+              <div id="resultDetails" class="small muted"></div>
+
+              <div class="action-row">
+                <button class="btn" id="reviewBtn">Review Answers</button>
+                <button class="btn" id="playAgainBtn">Play Again</button>
+              </div>
+
+              <div id="reviewArea" class="hidden review-area"></div>
+            </section>
+          </main>
+            
+          <aside class="panel">
+            <button class="btn" id="adminLoginBtn" style="margin-bottom:12px;float:right;">Admin</button>
+            <h3>Stats & Leaderboard</h3>
+            <!-- ...rest of sidebar... -->
+            <div class="stat-row"><div class="small">Score</div><div id="score">0</div></div>
+            <div class="stat-row"><div class="small">Correct</div><div id="correct">0</div></div>
+            <div class="stat-row"><div class="small">Wrong</div><div id="wrong">0</div></div>
+            <div class="stat-row"><div class="small">Skipped</div><div id="skipped">0</div></div>
+
+            <div class="muted">Leaderboard (select level)</div>
+            <select id="lbLevel" class="lb-select">
+              <option value="beginner">Beginner</option>
+              <option value="hard">Hard</option>
+              <option value="advanced">Advanced</option>
+            </select>
+
+            <div class="leaderboard" id="leaderboard"></div>
+
+            <div class="lb-controls">
+              <button class="btn" id="clearLB">Clear Leaderboard</button>
+              <button class="btn" id="exportLB">Export (JSON)</button>
+            </div>
+
+            <div class="muted credit">© 2025 Hacktivist Haven Quiz — All Rights Reserved</div>
+          </aside>
+        </div>
+
+        <footer class="footer-note">Built with ❤️ by Hacktivist Haven — do not remove this credit.</footer>
+
+        <canvas class="confetti" id="confetti"></canvas>
+      </div>
+    </div>
+        <script src="index.js"></script>
+        <script>
+          // --- Add to your quiz script when the quiz finishes ---
+          function saveQuizResult(quizTitle, score, level) {
+            const key = 'unit17_leaderboard_v1';
+            const date = new Date().toLocaleString();
+            const entry = { name: quizTitle, score, level, date };
+            let data = JSON.parse(localStorage.getItem(key) || '{}');
+            if (!data[level]) data[level] = [];
+            data[level].push(entry);
+            localStorage.setItem(key, JSON.stringify(data));
+          }
+
+          saveQuizResult('HTML Basics', finalScore, 'beginner');
+        </script>
+  </body>
+</html>
