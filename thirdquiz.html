@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Week 3 — Ransomware Quiz</title>
+  <link rel="stylesheet" href="thirdquiz.css">
+</head>
+<body>
+  <div id="name-screen" class="glass">
+    <h2>Enter Your Name to Begin</h2>
+    <input type="text" id="studentName" placeholder="Your full name..." />
+    <button class="btn" id="startBtn">Start Quiz</button>
+  </div>
+
+  <div class="quiz-container glass hidden">
+    <header>
+      <div class="brand">
+        <img src="bgblack.jpg" class="logo" alt="Logo">
+        <h1>Hacktivist Haven</h1>
+      </div>
+      <div class="progress-bar"><div id="progress"></div></div>
+    </header>
+
+    <main id="quiz-area">
+      <div id="question-container" class="fade-in"></div>
+      <button id="next-btn" class="btn">Next →</button>
+    </main>
+
+    <footer>
+      <p>© 2025 Hacktivist Haven — Week 3: Ransomware Quiz</p>
+    </footer>
+  </div>
+
+  <div id="result-screen" class="hidden glass">
+    <h2>Quiz Completed 🎉</h2>
+    <p id="score-text"></p>
+    <div id="rank-display"></div>
+    <button class="btn" onclick="location.href='student-dashboard.html'">Return to Dashboard</button>
+  </div>
+
+  <canvas id="confetti-canvas"></canvas>
+  <script src="thirdquiz.js"></script>
+</body>
+</html>
